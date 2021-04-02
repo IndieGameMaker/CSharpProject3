@@ -23,8 +23,6 @@ namespace MyWork
         //형식 매개변수 타입
         void CalExp<T>(T exp)
         {
-            var a = GetCount();
-
             Console.WriteLine($"{typeof(T)} exp = {exp}");
         }
 
