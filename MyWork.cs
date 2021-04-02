@@ -49,13 +49,15 @@ namespace MyWork
         */
         //delegate {저장할 함수의 형식}
         delegate void SumHandler (int a, int b); //델리게이트의 선언부
-        SumHandler sumHandler;  //델리게이트 타입으로 변수를 선언
+        SumHandler sumHandler;                   //델리게이트 타입으로 변수를 선언
 
         delegate void CalNumberHandler<T>(T num1, T num2); //델리게이트 선언
         //실수 타입의 매개변수를 사용하는 델리게이트 타입
         CalNumberHandler<float> calFloat;  
         //
         CalNumberHandler<int> calInteger;
+        //
+        CalNumberHandler<string> calString;
 
         void Sum(int a, int b)
         {
@@ -66,6 +68,10 @@ namespace MyWork
         {
             Console.WriteLine( a + b );
         }
+        void MinusFloat(float a, float b)
+        {
+            Console.WriteLine( a - b );
+        }        
 
         void Minus(int a, int b)
         {
@@ -76,9 +82,31 @@ namespace MyWork
         {
             sumHandler = Sum;
             sumHandler += Minus;
-            sumHandler(10, 5);
+            //sumHandler(10, 5);
 
-            calFloat = PlusFloat(20.0f, 4.5f);
+            calFloat = PlusFloat;
+            calFloat(20.0f, 4.5f);
+
+            //무명 델리게이트 메서드(Anoynimus Delegate)
+            calString = delegate (string a, string b)
+            {
+                string sumStr = a + b;
+                Console.WriteLine(sumStr);
+            };
+
+            calString("UserID ", "Zack");
+
+            //람다식(Lamda Statement)
+             calString = (string a, string b) =>
+             {
+                string sumStr = a + b;
+                Console.WriteLine(sumStr);
+             };
+
+             calString = (string a, string b) => Console.WriteLine(a+b);
+             calString("Player Level ", "Gold");
+
+
         }
 
     }
