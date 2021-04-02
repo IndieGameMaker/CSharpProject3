@@ -23,6 +23,8 @@ namespace MyWork
         //형식 매개변수 타입
         void CalExp<T>(T exp)
         {
+            var a = GetCount();
+
             Console.WriteLine($"{typeof(T)} exp = {exp}");
         }
 
@@ -36,5 +38,31 @@ namespace MyWork
             CalExp<float>(35.8f);
             CalExp<string>("Silver Level");
         }
+    }
+
+    public class DelegateDemo
+    {
+        //델리게이트 (Delegate) : 대리자 - 변수의 타입일종
+        //함수(메서드) 저장할 수 있는 변수
+        /*
+            void Sum()
+            void Sum(int a, int b)
+            int Sum(int a, int b)
+        */
+        //delegate {저장할 함수의 형식}
+        delegate void SumHandler (int a, int b);
+        SumHandler sumHandler;
+
+        void Sum(int a, int b)
+        {
+            Console.WriteLine(a + b);
+        }
+
+        public void Work02()
+        {
+            sumHandler += Sum;
+            sumHandler(10, 5);
+        }
+
     }
 }
